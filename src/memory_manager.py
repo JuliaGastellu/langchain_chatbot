@@ -20,14 +20,14 @@ class AdvancedMemoryManager:
             self.memory = ConversationBufferWindowMemory(
                 k=self.k,
                 memory_key="chat_history",
-                return_messages=True,
+                return_messages=False,  # Cambiado de True a False
                 output_key="answer"
             )
         elif self.memory_type == "conversation_summary_buffer" and self.llm:
             self.memory = ConversationSummaryBufferMemory(
                 llm=self.llm,
                 memory_key="chat_history",
-                return_messages=True,
+                return_messages=False,  # Cambiado de True a False
                 output_key="answer",
                 max_token_limit=2000
             )
@@ -36,7 +36,7 @@ class AdvancedMemoryManager:
             self.memory = ConversationBufferWindowMemory(
                 k=self.k,
                 memory_key="chat_history",
-                return_messages=True,
+                return_messages=False,  # Cambiado de True a False
                 output_key="answer"
             )
     
