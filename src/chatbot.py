@@ -116,7 +116,7 @@ class TechnicalDocumentChatbot:
         return result
 
     def ask(self, query: str) -> Dict[str, Any]:
-        """Realiza una pregunta al chatbot."""
+        """Procesa una pregunta y devuelve la respuesta."""
         logger.info(f"Recibida pregunta: '{query}'")
         if self.vector_store.get_document_count() == 0:
             return {
@@ -124,9 +124,16 @@ class TechnicalDocumentChatbot:
                 "source_documents": []
             }
         
-        result = self.chain({"question": query})
-        logger.info(f"Respuesta generada para: '{query}'")
-        return result
+        try:
+            result = self.chain.invoke({"question": query})  # Usar invoke en lugar de __call__
+            logger.info(f"Respuesta generada para: '{query}'")
+            return result
+        except Exception as e:
+            logger.error(f"Error al procesar pregunta: {str(e)}")
+            return {
+                "answer": f"Lo siento, ocurrió un error al procesar tu pregunta: {str(e)}",
+                "source_documents": []
+            }
 
     def clear_conversation(self):
         """Limpia el historial de la conversación."""
