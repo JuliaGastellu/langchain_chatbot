@@ -62,8 +62,8 @@ cp .env.example .env
 
 ## Configuración
 
-.env
-OPENAI_API_KEY=your_openai_api_key
+.env/
+OPENROUTER_API_KEY= your_openrouter_key
 PINECONE_API_KEY=your_pinecone_key
 PINECONE_ENVIRONMENT=your_pinecone_env
 LANGCHAIN_TRACING_V2=true
