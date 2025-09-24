@@ -16,6 +16,8 @@ __pycache__/
 *.env
 *.local
 *.DS_Store
+temp_docs/
+
 
 # Archivos de logs
 *.log
