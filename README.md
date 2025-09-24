@@ -25,8 +25,8 @@ FAISS para búsqueda vectorial
 
 ## Estructura del Proyecto:
 
-langchain_chatbot/
-├── config/                                       
+langchain_chatbot/                                              
+├── config/                                                                         
 │   └── config.yaml                                              
 ├── data/vector_db/chroma                                
 ├── src/                                         
