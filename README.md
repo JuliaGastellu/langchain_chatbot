@@ -25,23 +25,23 @@ FAISS para búsqueda vectorial
 
 ## Estructura del Proyecto:
 
-langchain_chatbot/
-├── src/
-│   ├── __init__.py
-│   ├── chatbot.py
-│   ├── document_processor.py
-│   ├── memory_manager.py
-│   ├── vector_store.py
-│   └── utils.py
-├── data/
-│   ├── documents/
-│   └── vector_db/
-├── config/
-│   └── config.yaml
-├── app.py
-├── requirements.txt
-├── README.md
-└── .env
+langchain_chatbot/                        
+├── src/                                         
+│   ├── __init__.py                                
+│   ├── chatbot.py                                
+│   ├── document_processor.py                              
+│   ├── memory_manager.py                               
+│   ├── vector_store.py                       
+│   └── utils.py                                    
+├── data/                                            
+│   ├── documents/                                      
+│   └── vector_db/                                
+├── config/                                       
+│   └── config.yaml                                        
+├── app.py                                       
+├── requirements.txt                                   
+├── README.md                                            
+└── .env                                                    
 
 ## Instalación:
 
