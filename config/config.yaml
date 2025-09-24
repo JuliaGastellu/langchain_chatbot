@@ -1,0 +1,34 @@
+model:
+  name: "mistralai/mistral-7b-instruct-v0.2"
+  temperature: 0.2
+  max_tokens: 3000
+  streaming: true
+
+embedding:
+  model_name: "sentence-transformers/all-MiniLM-L6-v2"
+  model_kwargs:
+    device: "cpu"
+  encode_kwargs:
+    normalize_embeddings: true
+
+vectorstore:
+  chunk_size: 1000
+  chunk_overlap: 150
+  top_k: 5
+  collection_name: "technical_docs_v2"
+  store_type: "chroma" # Puede ser "chroma" o "faiss"
+
+memory:
+  type: "conversation_buffer_window"
+  k: 10
+  return_messages: true
+
+search:
+  similarity_threshold: 0.7
+  max_results: 5
+
+ui:
+  title: "Asistente Técnico Inteligente"
+  theme: "light"
+  sidebar_expanded: true
+  page_icon: "🤖"

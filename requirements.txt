@@ -1,0 +1,18 @@
+langchain==0.1.20
+langchain-community==0.0.38
+langchain-core==0.1.52
+langchain-openai==0.1.6
+langsmith==0.1.57
+streamlit==1.29.0
+chromadb==0.4.22
+pypdf==4.0.1
+unstructured[pdf,docx,txt]==0.14.8
+pyyaml==6.0.1
+tiktoken==0.7.0
+python-dotenv==1.0.0
+langchain-huggingface==0.0.3
+sentence-transformers==2.7.0
+
+# Para UI mejorada
+streamlit-chat==0.1.1
+streamlit-option-menu==0.3.6

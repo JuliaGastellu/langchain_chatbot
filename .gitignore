@@ -1,0 +1,46 @@
+# Entorno virtual
+.venv/
+venv/
+ENV/
+env/
+
+# Archivos de Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Archivos de Jupyter
+.ipynb_checkpoints/
+
+# Archivos de configuración locales
+*.env
+*.local
+*.DS_Store
+
+# Archivos de logs
+*.log
+
+# Archivos temporales del sistema/editores
+*.swp
+*.swo
+*.tmp
+*.bak
+*.orig
+
+# Archivos de VSCode
+.vscode/
+
+# Archivos de PyCharm
+.idea/
+
+# Archivos de distribución
+build/
+dist/
+*.egg-info/
+
+# Datos temporales de Streamlit
+.streamlit/
+
+# Archivos de cache de pip
+pip-wheel-metadata/
+pip-log.txt
