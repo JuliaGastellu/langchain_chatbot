@@ -27,8 +27,8 @@ FAISS para búsqueda vectorial
 
 langchain_chatbot/
 ├── config/                                       
-│   └── config.yaml 
-├── data/vector_db/chroma       
+│   └── config.yaml                                              
+├── data/vector_db/chroma                                
 ├── src/                                         
 │   ├── __init__.py                                
 │   ├── chatbot.py                                
