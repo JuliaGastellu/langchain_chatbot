@@ -62,7 +62,7 @@ cp .env.example .env
 
 ## Configuración
 
-.env/
+.env/                            
 OPENROUTER_API_KEY= your_openrouter_key          
 PINECONE_API_KEY=your_pinecone_key                  
 PINECONE_ENVIRONMENT=your_pinecone_env                           
