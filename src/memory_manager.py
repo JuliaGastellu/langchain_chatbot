@@ -8,7 +8,7 @@ from datetime import datetime
 class AdvancedMemoryManager:
     """Gestor avanzado de memoria conversacional"""
     
-    def __init__(self, memory_type: str = "buffer_window", k: int = 10, llm=None):
+    def __init__(self, memory_type: str = "conversation_buffer_window", k: int = 10, llm=None):
         self.memory_type = memory_type
         self.k = k
         self.llm = llm
@@ -16,14 +16,14 @@ class AdvancedMemoryManager:
         
     def setup_memory(self):
         """Configura el tipo de memoria según la configuración"""
-        if self.memory_type == "buffer_window":
+        if self.memory_type == "conversation_buffer_window":
             self.memory = ConversationBufferWindowMemory(
                 k=self.k,
                 memory_key="chat_history",
                 return_messages=True,
                 output_key="answer"
             )
-        elif self.memory_type == "summary_buffer" and self.llm:
+        elif self.memory_type == "conversation_summary_buffer" and self.llm:
             self.memory = ConversationSummaryBufferMemory(
                 llm=self.llm,
                 memory_key="chat_history",
@@ -32,7 +32,7 @@ class AdvancedMemoryManager:
                 max_token_limit=2000
             )
         else:
-            # Fallback to simple buffer
+            # Fallback a memoria simple
             self.memory = ConversationBufferWindowMemory(
                 k=self.k,
                 memory_key="chat_history",

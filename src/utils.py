@@ -6,11 +6,14 @@ import json
 
 def setup_logging():
     """Configura el sistema de logging"""
+    # Crear directorio de logs si no existe
+    os.makedirs('logs', exist_ok=True)
+    
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[
-            logging.FileHandler('logs/chatbot.log'),
+            logging.FileHandler('logs/chatbot.log', encoding='utf-8'),
             logging.StreamHandler()
         ]
     )

@@ -56,19 +56,35 @@ class AdvancedVectorStore:
             elif self.store_type == "faiss":
                 faiss_index_path = os.path.join(self.persist_directory, "index.faiss")
                 if os.path.exists(faiss_index_path):
-                    self.vector_store = FAISS.load_local(
-                        self.persist_directory,
-                        self.embeddings,
-                        allow_dangerous_deserialization=True
-                    )
+                    try:
+                        self.vector_store = FAISS.load_local(
+                            self.persist_directory,
+                            self.embeddings,
+                            allow_dangerous_deserialization=True
+                        )
+                        logger.info("Índice FAISS existente cargado correctamente")
+                    except Exception as e:
+                        logger.warning(f"Error cargando índice FAISS existente: {e}. Creando uno nuevo.")
+                        self._create_empty_faiss_store()
                 else:
-                    logger.warning(f"No se encontró un índice FAISS en {self.persist_directory}. Creando uno nuevo y vacío.")
-                    # FAISS necesita ser inicializado con al menos un documento
-                    dummy_texts = ["Inicialización"]
-                    self.vector_store = FAISS.from_texts(dummy_texts, self.embeddings)
-                    self.vector_store.save_local(self.persist_directory)
+                    logger.info("No se encontró índice FAISS. Creando uno nuevo.")
+                    self._create_empty_faiss_store()
         except Exception as e:
             logger.error(f"Error al configurar el almacén de vectores: {e}")
+            raise
+    
+    def _create_empty_faiss_store(self):
+        """Crea un almacén FAISS vacío"""
+        try:
+            # FAISS necesita ser inicializado con al menos un documento
+            dummy_texts = ["Documento de inicialización temporal"]
+            self.vector_store = FAISS.from_texts(dummy_texts, self.embeddings)
+            self.vector_store.save_local(self.persist_directory)
+            # Limpiar el documento temporal
+            self.vector_store.delete([0])
+            logger.info("Almacén FAISS vacío creado correctamente")
+        except Exception as e:
+            logger.error(f"Error creando almacén FAISS vacío: {e}")
             raise
 
     def add_documents(self, documents: List[Document]) -> Dict[str, Any]:

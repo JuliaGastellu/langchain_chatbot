@@ -75,3 +75,35 @@ class DocumentProcessor:
         logger.info(f"Procesados {len(uploaded_files)} archivos, resultando en {len(split_documents)} fragmentos.")
 
         return split_documents
+
+    def process_text(self, text: str, source_name: str = "texto_directo") -> List[Document]:
+        """
+        Procesa texto directo sin necesidad de archivo.
+        
+        Args:
+            text (str): El texto a procesar
+            source_name (str): Nombre identificativo del origen del texto
+            
+        Returns:
+            List[Document]: Lista de documentos procesados y divididos
+        """
+        if not text or not text.strip():
+            logger.warning("Se proporcionó texto vacío para procesar")
+            return []
+            
+        try:
+            # Crear documento base
+            doc = Document(
+                page_content=text,
+                metadata={"source": source_name, "file_name": source_name}
+            )
+            
+            # Dividir en fragmentos
+            split_documents = self.text_splitter.split_documents([doc])
+            logger.info(f"Texto procesado en {len(split_documents)} fragmentos")
+            
+            return split_documents
+            
+        except Exception as e:
+            logger.error(f"Error procesando texto directo: {e}")
+            return []
