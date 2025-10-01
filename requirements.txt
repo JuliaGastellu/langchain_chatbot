@@ -12,10 +12,10 @@ faiss-cpu==1.12.0
 unstructured==0.18.15
 python-docx==0.8.11
 pypdf==4.0.1
-sentence-transformers==2.2.2
+sentence-transformers==4.36.0
 tiktoken==0.7.0
 transformers==4.36.0
-torch==2.1.0
+torch==2.8.0
 pyyaml==6.0.1
 python-dotenv==1.0.0
 requests==2.31.0
