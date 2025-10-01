@@ -1,32 +1,21 @@
-# LangChain
 langchain==0.1.20
 langchain-community==0.0.38
 langchain-core==0.1.52
 langchain-openai==0.1.6
 langchain-huggingface==0.0.3
 langsmith==0.1.57
-
-# Streamlit
 streamlit==1.29.0
 streamlit-chat==0.1.1
 streamlit-option-menu==0.3.6
-
-# Vector DBs
 chromadb==0.4.22
-faiss-cpu==1.10.0  
-
-# Procesamiento de documentos
-unstructured[pdf,docx,txt]==0.17.5  
+faiss-cpu==1.12.0
+unstructured==0.18.15
 python-docx==0.8.11
-pypdf==4.0.1  
-
-# Embeddings / Modelos
-sentence-transformers==2.2.2 
+pypdf==4.0.1
+sentence-transformers==2.2.2
 tiktoken==0.7.0
-transformers==4.31.0  
-torch==2.0.1+cpu 
-
-# Utils
+transformers==4.36.0
+torch==2.1.0
 pyyaml==6.0.1
 python-dotenv==1.0.0
 requests==2.31.0
