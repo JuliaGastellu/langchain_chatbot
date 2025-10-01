@@ -13,7 +13,8 @@ streamlit-option-menu==0.3.6
 
 # Vector DBs
 chromadb==0.4.22
-faiss-cpu==1.7.4
+faiss-cpu>=1.9.0
+
 
 # Document processing
 unstructured[pdf,docx,txt]==0.14.8
@@ -24,7 +25,7 @@ pypdf==4.0.1
 sentence-transformers==2.7.0
 tiktoken==0.7.0
 transformers==4.36.0
-torch==2.1.0 --extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.1.0 
 
 # Utils
 pyyaml==6.0.1

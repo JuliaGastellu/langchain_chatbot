@@ -17,6 +17,7 @@ __pycache__/
 *.local
 *.DS_Store
 temp_docs/
+data/vector_dc/chroma/
 
 
 # Archivos de logs
