@@ -13,19 +13,18 @@ streamlit-option-menu==0.3.6
 
 # Vector DBs
 chromadb==0.4.22
-faiss-cpu>=1.9.0
+faiss-cpu==1.10.0  
 
-
-# Document processing
-unstructured[pdf,docx,txt]==0.14.8
+# Procesamiento de documentos
+unstructured[pdf,docx,txt]==0.17.5  
 python-docx==0.8.11
 pypdf==4.0.1  
 
-# Embeddings / Models
-sentence-transformers==2.7.0
+# Embeddings / Modelos
+sentence-transformers==2.2.2 
 tiktoken==0.7.0
-transformers==4.36.0
-torch==2.1.0 
+transformers==4.31.0  
+torch==2.0.1+cpu 
 
 # Utils
 pyyaml==6.0.1
