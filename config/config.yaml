@@ -10,14 +10,20 @@ embedding:
     device: "cpu"
   encode_kwargs:
     normalize_embeddings: true
+    batch_size: 32  # Procesar embeddings en lotes más grandes
 
 vectorstore:
-  chunk_size: 1000
-  chunk_overlap: 150
+  chunk_size: 800  # Reducido para procesamiento más rápido
+  chunk_overlap: 100  # Reducido overlap
   top_k: 5
   collection_name: "technical_docs_v2"
-  store_type: "chroma" # Puede ser "chroma" o "faiss"
+  store_type: "chroma"  # ChromaDB es generalmente más rápido
+  batch_size: 100  # Tamaño de lote para inserción
 
+processing:
+  max_workers: 4  # Número de hilos para procesamiento paralelo
+  use_fast_loaders: true  # Usar loaders optimizados
+  
 memory:
   type: "conversation_buffer_window"
   k: 10

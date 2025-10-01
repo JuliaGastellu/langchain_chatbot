@@ -88,20 +88,39 @@ class AdvancedVectorStore:
             raise
 
     def add_documents(self, documents: List[Document]) -> Dict[str, Any]:
-        """Añade una lista de documentos al almacén de vectores."""
+        """Añade documentos al almacén con procesamiento por lotes optimizado."""
         if not documents:
-            logger.warning("Se intentó añadir una lista vacía de documentos.")
-            return {"status": "warning", "message": "No se proporcionaron documentos para añadir."}
+            logger.warning("Lista vacía de documentos")
+            return {"status": "warning", "message": "No hay documentos para añadir"}
 
         try:
+            # Añadir timestamp en lote
+            timestamp = datetime.now().isoformat()
             for doc in documents:
-                doc.metadata['added_at'] = datetime.now().isoformat()
+                doc.metadata['added_at'] = timestamp
             
-            logger.info(f"Añadiendo {len(documents)} documentos al almacén '{self.store_type}'.")
-            if self.store_type == "chroma":
-                self.vector_store.add_documents(documents)
-            elif self.store_type == "faiss":
-                self.vector_store.add_documents(documents)
+            logger.info(f"Añadiendo {len(documents)} documentos al almacén '{self.store_type}'")
+            
+            # Procesamiento por lotes para mejor rendimiento
+            batch_size = 100  # Procesar en lotes de 100 documentos
+            total_added = 0
+            
+            for i in range(0, len(documents), batch_size):
+                batch = documents[i:i + batch_size]
+                
+                if self.store_type == "chroma":
+                    self.vector_store.add_documents(batch)
+                elif self.store_type == "faiss":
+                    self.vector_store.add_documents(batch)
+                    # Solo guardar cada ciertos lotes para reducir I/O
+                    if (i + batch_size) % (batch_size * 3) == 0 or (i + batch_size) >= len(documents):
+                        self.vector_store.save_local(self.persist_directory)
+                
+                total_added += len(batch)
+                logger.info(f"Procesado lote {i//batch_size + 1}: {total_added}/{len(documents)} documentos")
+            
+            # Guardar final para FAISS
+            if self.store_type == "faiss":
                 self.vector_store.save_local(self.persist_directory)
             
             return {
@@ -109,8 +128,9 @@ class AdvancedVectorStore:
                 "added_documents": len(documents),
                 "total_documents": self.get_document_count()
             }
+            
         except Exception as e:
-            logger.error(f"Error al añadir documentos: {e}")
+            logger.error(f"Error añadiendo documentos: {e}")
             return {"status": "error", "message": str(e)}
     
     def as_retriever(self, search_kwargs: Dict = None) -> Any:

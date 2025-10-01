@@ -1,4 +1,4 @@
-# LangChain y componentes principales
+# LangChain
 langchain==0.1.20
 langchain-community==0.0.38
 langchain-core==0.1.52
@@ -6,34 +6,32 @@ langchain-openai==0.1.6
 langchain-huggingface==0.0.3
 langsmith==0.1.57
 
-# Streamlit para la interfaz web
+# Streamlit
 streamlit==1.29.0
 streamlit-chat==0.1.1
 streamlit-option-menu==0.3.6
 
-# Bases de datos vectoriales
+# Vector DBs
 chromadb==0.4.22
 faiss-cpu==1.7.4
 
-# Procesamiento de documentos
-pypdf==4.0.1
+# Document processing
 unstructured[pdf,docx,txt]==0.14.8
 python-docx==0.8.11
+pypdf==4.0.1  
 
-# Embeddings y modelos
+# Embeddings / Models
 sentence-transformers==2.7.0
 tiktoken==0.7.0
 transformers==4.36.0
-torch==2.1.0
+torch==2.1.0 --extra-index-url https://download.pytorch.org/whl/cpu
 
-# Utilidades
+# Utils
 pyyaml==6.0.1
 python-dotenv==1.0.0
 requests==2.31.0
 numpy==1.24.3
 pandas==2.0.3
-
-# Para deployment en Streamlit Cloud
-watchdog==3.0.0
-click==8.1.7
 altair==5.0.1
+click==8.1.7
+watchdog==3.0.0
